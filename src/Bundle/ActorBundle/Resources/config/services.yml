@@ -1,0 +1,4 @@
+services:
+#    actor.example:
+#        class: Bundle\ActorBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
