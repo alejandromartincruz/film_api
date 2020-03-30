@@ -4,7 +4,7 @@ actor:
 
 film:
     resource: "@FilmBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /film
 
 app:
     resource: '@AppBundle/Controller/'

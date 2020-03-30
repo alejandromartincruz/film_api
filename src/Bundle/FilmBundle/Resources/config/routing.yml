@@ -1,3 +1,30 @@
-film_homepage:
+film_create:
     path:     /
+    defaults: { _controller: FilmBundle:CreateFilm:execute }
+    methods: [POST]
+
+film_update:
+    path:     /
+    defaults: { _controller: FilmBundle:UpdateFilm:execute }
+    methods: [PUT]
+
+film_delete:
+    path:     /
+    defaults: { _controller: FilmBundle:DeleteFilm:execute }
+    methods: [DELETE]
+
+film_details:
+    path:     /list/{filmId}/
+    defaults: { _controller: FilmBundle:ListFilmDetails:execute }
+    methods: [GET]
+    requirements:
+        filmId: '\d+'
+
+film_list:
+    path:     /list/
+    defaults: { _controller: FilmBundle:ListFilms:execute }
+    methods: [GET]
+
+film_test:
+    path:     /test_default_controller/
     defaults: { _controller: FilmBundle:Default:index }

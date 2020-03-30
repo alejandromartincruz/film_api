@@ -28,10 +28,9 @@ class Actor
      * Actor constructor.
      * @param $name
      */
-    public function __construct($name, Film $film)
+    public function __construct($name)
     {
         $this->name = $name;
-        $this->film = $film;
     }
 
     /**
