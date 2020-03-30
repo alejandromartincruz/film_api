@@ -1,0 +1,29 @@
+Bundle\FilmBundle\Entity\Film:
+    type: entity
+    manyToOne:
+        actor:
+            targetEntity: \Bundle\ActorBundle\Entity\Actor
+            joinColumn:
+                name:  actor_id
+                referencedColumnName: id
+    table: film
+    repositoryClass: Bundle\FilmBundle\Repository\FilmRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '80'
+            unique: true
+        description:
+            type: text
+            nullable: true
+        actor_id:
+            type: integer
+            unique: false
+
+    lifecycleCallbacks: {  }
