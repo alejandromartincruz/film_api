@@ -1,0 +1,6 @@
+film:
+  listtitle: Listado de peliculas
+  detailslink: Ver detalles de pelicula
+  detailstitle: Detalles de la pelicula con id %id%
+  title: Título
+  description: Descripción

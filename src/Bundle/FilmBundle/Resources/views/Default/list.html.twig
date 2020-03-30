@@ -4,14 +4,14 @@
     <div id="wrapper">
         <div id="container">
             <div>
-                <h1>Listado de peliculas</h1>
+                <h1>{% trans %}film.listtitle{% endtrans %}</h1>
             </div>
             <div>
                 <ul>
                     {% for film in films %}
                         <li>
                             <div><b>{{ film.name }}</b></div>
-                            <div><a href="{{ film.id }}">Ver detalles de pelicula</a></div>
+                            <div><a href="{{ film.id }}">{% trans %}film.detailslink{% endtrans %}</a></div>
                         </li>
                     {% endfor %}
                 </ul>

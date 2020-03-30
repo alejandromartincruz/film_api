@@ -1,0 +1,6 @@
+film:
+  listtitle: List of films
+  detailslink: Go to film details
+  detailstitle: Details of film with id %id%
+  title: Title
+  description: Description

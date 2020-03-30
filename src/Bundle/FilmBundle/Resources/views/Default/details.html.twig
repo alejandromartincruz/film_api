@@ -4,11 +4,11 @@
     <div id="wrapper">
         <div id="container">
             <div>
-                <h1>Detalles de la pelicula con id {{ film.id }}</h1>
+                <h1>{% trans with {'%id%': film.id } %}film.detailstitle{% endtrans %}</h1>
             </div>
             <div>
-                <div>Título: <b>{{ film.name }}</b></div>
-                <div>Descripción: <small>{{ film.description }}</small></div>
+                <div>{% trans %}film.title{% endtrans %}: <b>{{ film.name }}</b></div>
+                <div>{% trans %}film.description{% endtrans %}: <small>{{ film.description }}</small></div>
             </div>
         </div>
     </div>
