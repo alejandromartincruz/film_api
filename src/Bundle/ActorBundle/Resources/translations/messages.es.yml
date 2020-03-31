@@ -1,0 +1,5 @@
+actor:
+  listtitle: Listado de actores
+  detailslink: Ver detalles de actor
+  detailstitle: Detalles del actor con id %id%
+  name: Nombre

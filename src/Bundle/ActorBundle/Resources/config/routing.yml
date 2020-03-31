@@ -1,3 +1,30 @@
-actor_homepage:
-    path:     /list
+actor_create:
+    path:     /
+    defaults: { _controller: ActorBundle:CreateActor:execute }
+    methods: [POST]
+
+actor_update:
+    path:     /
+    defaults: { _controller: ActorBundle:UpdateActor:execute }
+    methods: [PUT]
+
+actor_delete:
+    path:     /
+    defaults: { _controller: ActorBundle:DeleteActor:execute }
+    methods: [DELETE]
+
+actor_details:
+    path:     /list/{actorId}/
+    defaults: { _controller: ActorBundle:ListActorDetails:execute }
+    methods: [GET]
+    requirements:
+        actorId: '\d+'
+
+actor_list:
+    path:     /list/
+    defaults: { _controller: ActorBundle:ListActors:execute }
+    methods: [GET]
+
+actor_test:
+    path:     /test_default_controller/
     defaults: { _controller: ActorBundle:Default:index }
