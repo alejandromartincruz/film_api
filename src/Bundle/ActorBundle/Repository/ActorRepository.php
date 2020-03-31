@@ -10,4 +10,22 @@ namespace Bundle\ActorBundle\Repository;
  */
 class ActorRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllOrderedByName()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT a FROM ActorBundle:Actor a ORDER BY a.name ASC'
+            )
+            ->getResult();
+    }
+
+    public function findOneByIdJoinedToFilm(int $id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT a FROM ActorBundle:Actor a WHERE a.id = :id'
+            )
+            ->setParameter('id', $id)
+            ->getOneOrNullResult();
+    }
 }

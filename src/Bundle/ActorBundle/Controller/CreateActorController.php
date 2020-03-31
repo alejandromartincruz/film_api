@@ -14,7 +14,9 @@ class CreateActorController extends Controller
 
         $name = $request->query->get('name');
 
-        $actor = new Actor($name);
+        $actor = new Actor();
+
+        $actor->setName($name);
 
         $em = $this->getDoctrine()->getManager();
 

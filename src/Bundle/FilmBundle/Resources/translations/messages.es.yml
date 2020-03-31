@@ -4,3 +4,5 @@ film:
   detailstitle: Detalles de la pelicula con id %id%
   title: Título
   description: Descripción
+  actor:
+    name: Nombre del actor

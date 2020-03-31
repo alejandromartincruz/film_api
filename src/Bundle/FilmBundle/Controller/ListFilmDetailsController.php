@@ -2,6 +2,7 @@
 
 namespace Bundle\FilmBundle\Controller;
 
+use Bundle\FilmBundle\Entity\Film;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ListFilmDetailsController extends Controller
@@ -10,8 +11,10 @@ class ListFilmDetailsController extends Controller
     {
         $id = (int) $filmId;
 
-        $em = $this->getDoctrine()->getManager();
-        $film = $em->getReference('FilmBundle:Film', $id);
+        $film = $this->getDoctrine()
+            ->getRepository(Film::class)
+            ->findOneByIdJoinedToActor($id);
+
         return $this->render('FilmBundle:Default:details.html.twig', ['film' => $film] );
     }
 }

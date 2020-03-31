@@ -10,4 +10,22 @@ namespace Bundle\FilmBundle\Repository;
  */
 class FilmRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllOrderedByName()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT f FROM FilmBundle:Film f ORDER BY f.name ASC'
+            )
+            ->getResult();
+    }
+
+    public function findOneByIdJoinedToActor(int $id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT f, a FROM FilmBundle:Film f INNER JOIN f.actor a WHERE f.id = :id'
+            )
+            ->setParameter('id', $id)
+            ->getOneOrNullResult();
+    }
 }

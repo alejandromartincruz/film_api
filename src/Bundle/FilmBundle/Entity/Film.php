@@ -34,15 +34,6 @@ class Film
      */
     private $actor;
 
-    public function __construct(string $name, string $description, Actor $actor)
-    {
-        $this->name = $name;
-        $this->description = $description;
-        $this->actor_id = $actor->getId();
-        $this->actor = $actor;
-    }
-
-
     /**
      * Get id
      *
@@ -60,7 +51,7 @@ class Film
      *
      * @return Film
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
 
@@ -72,7 +63,7 @@ class Film
      *
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -84,7 +75,7 @@ class Film
      *
      * @return Film
      */
-    public function setDescription($description)
+    public function setDescription($description): self
     {
         $this->description = $description;
 
@@ -96,7 +87,7 @@ class Film
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -108,7 +99,7 @@ class Film
      *
      * @return Film
      */
-    public function setActorId($actor_id)
+    public function setActorId($actor_id): self
     {
         $this->actor_id = $actor_id;
 
@@ -120,9 +111,26 @@ class Film
      *
      * @return int
      */
-    public function getActorId()
+    public function getActorId(): ?int 
     {
         return $this->actor_id;
+    }
+
+    /**
+     * Get actor
+     *
+     * @return Actor
+     */
+    public function getActor(): ?Actor
+    {
+        return $this->actor;
+    }
+
+    public function setActor(?Actor $actor): self
+    {
+        $this->actor = $actor;
+        $this->actor_id = $actor->getId();
+        return $this;
     }
 }
 

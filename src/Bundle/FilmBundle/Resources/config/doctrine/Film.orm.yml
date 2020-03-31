@@ -3,6 +3,7 @@ Bundle\FilmBundle\Entity\Film:
     manyToOne:
         actor:
             targetEntity: \Bundle\ActorBundle\Entity\Actor
+            mappedBy: films
             joinColumn:
                 name:  actor_id
                 referencedColumnName: id

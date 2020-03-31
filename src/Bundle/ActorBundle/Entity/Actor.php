@@ -3,6 +3,8 @@
 namespace Bundle\ActorBundle\Entity;
 
 use Bundle\FilmBundle\Entity\Film;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Actor
@@ -22,15 +24,15 @@ class Actor
     /**
      * @var Film
      */
-    private $film;
+    private $films;
 
     /**
      * Actor constructor.
      * @param $name
      */
-    public function __construct($name)
+    public function __construct()
     {
-        $this->name = $name;
+        $this->films = new ArrayCollection();
     }
 
     /**
@@ -50,7 +52,7 @@ class Actor
      *
      * @return Actor
      */
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
 
@@ -62,9 +64,39 @@ class Actor
      *
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * Get films
+     *
+     * @return Film
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    public function addFilm(Film $film): self
+    {
+        if (!$this->films->contains($film)) {
+            $this->films[] = $film;
+            $film->setComment($this);
+        }
+        return $this;
+    }
+    public function removeFilm(Film $film): self
+    {
+        if ($this->films->contains($film)) {
+            $this->films->removeElement($film);
+            // set the owning side to null (unless already changed)
+            if ($film->getComment() === $this) {
+                $film->setComment(null);
+            }
+        }
+        return $this;
     }
 }
 
