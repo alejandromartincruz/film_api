@@ -4,11 +4,8 @@ Bundle\ActorBundle\Entity\Actor:
         film:
             targetEntity: \Bundle\FilmBundle\Entity\Film
             inversedBy: actor
-            joinColumn:
-                name: id
-                referencedColumnName: actor_id
     table: actor
-    repositoryClass: Bundle\ActorBundle\Repository\ActorRepository
+    repositoryClass: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
     id:
         id:
             type: integer

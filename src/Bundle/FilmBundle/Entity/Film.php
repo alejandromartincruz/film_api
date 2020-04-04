@@ -111,7 +111,7 @@ class Film
      *
      * @return int
      */
-    public function getActorId(): ?int 
+    public function getActorId(): ?int
     {
         return $this->actor_id;
     }
@@ -131,6 +131,16 @@ class Film
         $this->actor = $actor;
         $this->actor_id = $actor->getId();
         return $this;
+    }
+
+    public function toArray(Film $film)
+    {
+        return [
+            'id' => $film->getId(),
+            'name' => $film->getName(),
+            'description' => $film->getDescription(),
+            'actor_id' => $film->getActorId()
+        ];
     }
 }
 

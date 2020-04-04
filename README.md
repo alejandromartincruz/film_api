@@ -19,29 +19,30 @@ relación inversa no se dice nada, y por poder poner el mismo Actor en diversas 
 >"La API HTTP debe permitir, para los Film: todas las operaciones CRUD"
 
 Film tiene el CRUD realizado:
-* Create: una acción POST en la ruta /film/ hay que poner en la query un name, un description y un actorId. Por ejemplo: ?name=Matriz&description=primera%20descripción&actorId=3
-* Read: en la ruta /film/list/ accesible desde navegador y que ofrece un link a página con detalles de cada pelicula.
-* Update: una acción PUT en la ruta /film/ hay que poner en la query un id, un name, un description y un actorId. Por ejemplo ?id=1&name=Matrix&description=una%20descripcion%20diferente&actorId=4
-* Delete: una acción DELETE en la ruta /film/ hay que poner en la query un id. Por ejemplo ?id=1
+* Create: una acción POST en la ruta `/api/film/` hay que añadirle un json. Por ejemplo: { "name": "Matriz Reloaded", "description": "primera descripción", "actorId": "3" }
+* Read: una acción GET en la ruta `/api/film/` Devuelve un array de objetos json con las peliculas
+* Update: una acción PUT en la ruta `/api/film/` hay que añadirle un json. Por ejemplo: { "id": "1", "name": "Matrix Reloaded", "description": "descripción nueva", "actorId": "4" }
+* Delete: una acción DELETE en la ruta `/api/film/` hay que añadirle un json. Por ejemplo: { "id": "1" }
 
 > La API HTTP para los Actor debe pemitir, como mínimo, las operaciones CRD.
 
 Actor tiene el CRUD realizado:
-* Create: una acción POST en la ruta /actor/ hay que poner en la query un name. Por ejemplo: ?name=Arnold
-* Read: en la ruta /actor/list/ accesible desde navegador y que ofrece un link a página con detalles de cada actor.
-* Update: una acción PUT en la ruta /actor/ hay que poner en la query un id y un name. Por ejemplo ?id=1&name=Arnold%20Schwarzenegger
-* Delete: una acción DELETE en la ruta /actor/ hay que poner en la query un id. Por ejemplo ?id=1
+* Create: una acción POST en la ruta `/api/actor/` hay que añadirle un json. Por ejemplo: { "name": "H.J. Simpson" }
+* Read: una acción GET en la ruta `/api/actor/` Devuelve un array de objetos json con los actores
+* Update: una acción PUT en la ruta `/api/actor/` hay que añadirle un json. Por ejemplo: { "id": "1", "name": "Max Power" }
+* Delete: una acción DELETE en la ruta `/api/actor/` hay que añadirle un json. Por ejemplo: { "id": "1" }
 
 > Además, se ofrecerán dos páginas de interfaz de usuario, una para la lectura de las propiedades de un Film en concreto y otra para la lectura de las propiedades de un Actor en concreto.
 
 Desde la página de inicio / hay dos enlaces, uno para un listado de peliculas y otro con un listado de actores.
 
-Film tiene una página de interfaz de usuario con el listado completo de peliculas descrito antes, desde cada una de las
-peliculas se tiene acceso a una página de lectura de las propiedades del Film. La pagina esta en la ruta:
+la ruta `/film/list/` accesible desde navegador ofrece un listado con las peliculas y cada pelicula con un enlace, desde cada uno de los
+enlaces de las peliculas se tiene acceso a una página de lectura de las propiedades del Film. La página esta en la ruta:
 
     /film/list/{filmId}/
 
-Actor también tiene la página de listado de actores, cada actor con un enlace a una página con los detalles del actor. La página esta en la ruuta:
+la ruta `/actor/list/` accesible desde navegador ofrece un listado con los actores y cada actor con un enlace, desde cada uno de los
+enlaces de los actores se tiene acceso a una página de lectura de las propiedades del Actor. La página esta en la ruta:
 
     /actor/list/{actorId}/
     

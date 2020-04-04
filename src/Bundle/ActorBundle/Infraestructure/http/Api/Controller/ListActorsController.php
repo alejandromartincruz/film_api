@@ -1,9 +1,10 @@
 <?php
 
-namespace Bundle\ActorBundle\Controller;
+namespace Bundle\ActorBundle\Infraestructure\http\Api\Controller;
 
 use Bundle\ActorBundle\Entity\Actor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ListActorsController extends Controller
 {
@@ -13,6 +14,11 @@ class ListActorsController extends Controller
             ->getRepository(Actor::class)
             ->findAllOrderedByName();
 
-        return $this->render('ActorBundle:Default:list.html.twig', ['actors' => $actors] );
+        $actorsAsArray = array_map(function (Actor $a) {
+            return $a->toArray($a);
+        }, $actors);
+
+        return new JsonResponse($actorsAsArray);
     }
+
 }

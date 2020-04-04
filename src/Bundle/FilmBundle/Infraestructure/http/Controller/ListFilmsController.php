@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Controller;
+namespace Bundle\FilmBundle\Infraestructure\http\Controller;
 
 use Bundle\FilmBundle\Entity\Film;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

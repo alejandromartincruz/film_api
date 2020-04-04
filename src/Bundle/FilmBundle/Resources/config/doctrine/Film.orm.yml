@@ -4,11 +4,8 @@ Bundle\FilmBundle\Entity\Film:
         actor:
             targetEntity: \Bundle\ActorBundle\Entity\Actor
             mappedBy: films
-            joinColumn:
-                name:  actor_id
-                referencedColumnName: id
     table: film
-    repositoryClass: Bundle\FilmBundle\Repository\FilmRepository
+    repositoryClass: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
     id:
         id:
             type: integer

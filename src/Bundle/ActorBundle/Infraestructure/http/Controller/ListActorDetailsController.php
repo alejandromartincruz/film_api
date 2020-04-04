@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\ActorBundle\Controller;
+namespace Bundle\ActorBundle\Infraestructure\http\Controller;
 
 use Bundle\ActorBundle\Entity\Actor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +13,7 @@ class ListActorDetailsController extends Controller
 
         $actor = $this->getDoctrine()
             ->getRepository(Actor::class)
-            ->findOneByIdJoinedToFilm($id);
+            ->findOneById($id);
 
         return $this->render('ActorBundle:Default:details.html.twig', ['actor' => $actor] );
     }

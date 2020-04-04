@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Controller;
+namespace Bundle\FilmBundle\Infraestructure\http\Api\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,7 +10,10 @@ class DeleteFilmController extends Controller
 {
     public function executeAction(Request $request)
     {
-        $id = $request->query->get('id');
+        $json_string = utf8_encode($request->getContent());
+        $json = json_decode( $json_string, true );
+
+        $id = $json['id'];
 
         $em = $this->getDoctrine()->getManager();
         $film = $em->getReference('FilmBundle:Film', $id);

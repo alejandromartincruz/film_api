@@ -1,6 +1,9 @@
 <?php
 
-namespace Bundle\FilmBundle\Repository;
+namespace Bundle\FilmBundle\Infraestructure\Repository;
+
+use Bundle\FilmBundle\Entity\Film;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * FilmRepository
@@ -10,22 +13,35 @@ namespace Bundle\FilmBundle\Repository;
  */
 class FilmRepository extends \Doctrine\ORM\EntityRepository
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function findAllOrderedByName()
     {
-        return $this->getEntityManager()
+        return $this->entityManager
             ->createQuery(
                 'SELECT f FROM FilmBundle:Film f ORDER BY f.name ASC'
             )
             ->getResult();
     }
 
-    public function findOneByIdJoinedToActor(int $id)
+    public function findOneById(int $id)
     {
-        return $this->getEntityManager()
+        return $this->entityManager
             ->createQuery(
                 'SELECT f, a FROM FilmBundle:Film f INNER JOIN f.actor a WHERE f.id = :id'
             )
             ->setParameter('id', $id)
             ->getOneOrNullResult();
+    }
+
+    public function saveFilm(Film $film)
+    {
+        $this->entityManager->persist($film);
+        $this->entityManager->flush();
     }
 }

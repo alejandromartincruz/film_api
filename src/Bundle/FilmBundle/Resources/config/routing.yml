@@ -1,30 +1,35 @@
-film_create:
-    path:     /
-    defaults: { _controller: FilmBundle:CreateFilm:execute }
+api_film_create:
+    path:     /api/film/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Api\Controller\CreateFilmController::executeAction }
     methods: [POST]
 
-film_update:
-    path:     /
-    defaults: { _controller: FilmBundle:UpdateFilm:execute }
+api_film_update:
+    path:     /api/film/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Api\Controller\UpdateFilmController::executeAction }
     methods: [PUT]
 
-film_delete:
-    path:     /
-    defaults: { _controller: FilmBundle:DeleteFilm:execute }
+api_film_delete:
+    path:     /api/film/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Api\Controller\DeleteFilmController::executeAction }
     methods: [DELETE]
 
+api_film_list:
+    path:     /api/film/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Api\Controller\ListFilmsController::executeAction }
+    methods: [GET]
+
 film_details:
-    path:     /list/{filmId}/
-    defaults: { _controller: FilmBundle:ListFilmDetails:execute }
+    path:     /film/list/{filmId}/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Controller\ListFilmDetailsController::executeAction }
     methods: [GET]
     requirements:
         filmId: '\d+'
 
 film_list:
-    path:     /list/
-    defaults: { _controller: FilmBundle:ListFilms:execute }
+    path:     /film/list/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Controller\ListFilmsController::executeAction }
     methods: [GET]
 
 film_test:
-    path:     /test_default_controller/
-    defaults: { _controller: FilmBundle:Default:index }
+    path:     /film/test_default_controller/
+    defaults: { _controller: Bundle\FilmBundle\Infraestructure\http\Controller\DefaultController::indexAction }

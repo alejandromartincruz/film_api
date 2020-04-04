@@ -98,5 +98,13 @@ class Actor
         }
         return $this;
     }
+
+    public function toArray(Actor $actor)
+    {
+        return [
+            'id' => $actor->getId(),
+            'name' => $actor->getName()
+        ];
+    }
 }
 

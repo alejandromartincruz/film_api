@@ -4,6 +4,37 @@ parameters:
     #parameter_name: value
 
 services:
+    app.film.usecase.newfilm:
+        class: Bundle\FilmBundle\Application\Usecase\CreateFilm
+        public: true
+        arguments:
+            $filmRepository: '@app.film.repository'
+            $actorRepository: '@app.actor.repository'
+            $dispatcher: '@event_dispatcher'
+    app.actor.usecase.newactor:
+        class: Bundle\ActorBundle\Application\Usecase\CreateActor
+        public: true
+        arguments:
+            $actorRepository: '@app.actor.repository'
+            $dispatcher: '@event_dispatcher'
+    app.film.repository:
+        class: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+    app.actor.repository:
+        class: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+    console.command.actor.create:
+        class: Bundle\ActorBundle\Application\Command\CreateActorCommand
+        arguments:
+            $createActorCase: '@app.actor.usecase.newactor'
+        tags: ['console.command']
+    console.command.film.create:
+        class: Bundle\FilmBundle\Application\Command\CreateFilmCommand
+        arguments:
+            $createFilmCase: '@app.film.usecase.newfilm'
+        tags: ['console.command']
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Controller;
+namespace Bundle\FilmBundle\Infraestructure\http\Api\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,10 +10,13 @@ class UpdateFilmController extends Controller
 {
     public function executeAction(Request $request)
     {
-        $id = $request->query->get('id');
-        $name = $request->query->get('name');
-        $description = $request->query->get('description');
-        $actorId = $request->query->get('actorId');
+        $json_string = utf8_encode($request->getContent());
+        $json = json_decode( $json_string, true );
+
+        $id = $json['id'];
+        $name = $json['name'];
+        $description = $json['description'];
+        $actorId = $json['actorId'];
 
         $em = $this->getDoctrine()->getManager();
         $film = $em->getReference('FilmBundle:Film', $id);

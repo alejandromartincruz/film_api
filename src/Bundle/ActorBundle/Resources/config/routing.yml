@@ -1,30 +1,35 @@
-actor_create:
-    path:     /
-    defaults: { _controller: ActorBundle:CreateActor:execute }
+api_actor_create:
+    path:     /api/actor/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\CreateActorController::executeAction }
     methods: [POST]
 
-actor_update:
-    path:     /
-    defaults: { _controller: ActorBundle:UpdateActor:execute }
+api_actor_update:
+    path:     /api/actor/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\UpdateActorController::executeAction }
     methods: [PUT]
 
-actor_delete:
-    path:     /
-    defaults: { _controller: ActorBundle:DeleteActor:execute }
+api_actor_delete:
+    path:     /api/actor/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\DeleteActorController::executeAction }
     methods: [DELETE]
 
+api_actor_list:
+    path:     /api/actor/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\ListActorsController::executeAction }
+    methods: [GET]
+
 actor_details:
-    path:     /list/{actorId}/
-    defaults: { _controller: ActorBundle:ListActorDetails:execute }
+    path:     /actor/list/{actorId}/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\ListActorDetailsController::executeAction }
     methods: [GET]
     requirements:
         actorId: '\d+'
 
 actor_list:
-    path:     /list/
-    defaults: { _controller: ActorBundle:ListActors:execute }
+    path:     /actor/list/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\ListActorsController::executeAction }
     methods: [GET]
 
 actor_test:
-    path:     /test_default_controller/
-    defaults: { _controller: ActorBundle:Default:index }
+    path:     /actor/test_default_controller/
+    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\DefaultController::indexAction }

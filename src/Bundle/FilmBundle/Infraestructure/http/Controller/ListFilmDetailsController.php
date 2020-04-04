@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Controller;
+namespace Bundle\FilmBundle\Infraestructure\http\Controller;
 
 use Bundle\FilmBundle\Entity\Film;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +13,7 @@ class ListFilmDetailsController extends Controller
 
         $film = $this->getDoctrine()
             ->getRepository(Film::class)
-            ->findOneByIdJoinedToActor($id);
+            ->findOneById($id);
 
         return $this->render('FilmBundle:Default:details.html.twig', ['film' => $film] );
     }

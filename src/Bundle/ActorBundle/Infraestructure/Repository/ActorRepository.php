@@ -1,6 +1,9 @@
 <?php
 
-namespace Bundle\ActorBundle\Repository;
+namespace Bundle\ActorBundle\Infraestructure\Repository;
+
+use Bundle\ActorBundle\Entity\Actor;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * ActorRepository
@@ -10,22 +13,36 @@ namespace Bundle\ActorBundle\Repository;
  */
 class ActorRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function findAllOrderedByName()
     {
-        return $this->getEntityManager()
+        return $this->entityManager
             ->createQuery(
                 'SELECT a FROM ActorBundle:Actor a ORDER BY a.name ASC'
             )
             ->getResult();
     }
 
-    public function findOneByIdJoinedToFilm(int $id)
+    public function findOneById(int $id)
     {
-        return $this->getEntityManager()
+        return $this->entityManager
             ->createQuery(
                 'SELECT a FROM ActorBundle:Actor a WHERE a.id = :id'
             )
             ->setParameter('id', $id)
             ->getOneOrNullResult();
+    }
+
+    public function saveActor(Actor $actor)
+    {
+        $this->entityManager->persist($actor);
+        $this->entityManager->flush();
     }
 }
