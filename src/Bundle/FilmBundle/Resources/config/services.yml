@@ -1,4 +1,61 @@
 services:
-#    film.example:
-#        class: Bundle\FilmBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+  app.film.usecase.newfilm:
+    class: Bundle\FilmBundle\Application\Usecase\CreateFilm
+    public: true
+    arguments:
+      $filmRepository: '@app.film.repository'
+      $actorRepository: '@app.actor.repository'
+      $dispatcher: '@event_dispatcher'
+  app.film.usecase.readfilm:
+    class: Bundle\FilmBundle\Application\Usecase\ReadFilm
+    public: true
+    arguments:
+      $filmRepository: '@app.film.repository'
+      $dispatcher: '@event_dispatcher'
+  app.film.usecase.updatefilm:
+    class: Bundle\FilmBundle\Application\Usecase\UpdateFilm
+    public: true
+    arguments:
+      $filmRepository: '@app.film.repository'
+      $actorRepository: '@app.actor.repository'
+      $dispatcher: '@event_dispatcher'
+  app.film.usecase.deletefilm:
+    class: Bundle\FilmBundle\Application\Usecase\DeleteFilm
+    public: true
+    arguments:
+      $filmRepository: '@app.film.repository'
+      $dispatcher: '@event_dispatcher'
+  app.film.repository:
+    class: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
+    arguments:
+      $entityManager: '@doctrine.orm.entity_manager'
+  console.command.film.create:
+    class: Bundle\FilmBundle\Application\Command\CreateFilmCommand
+    arguments:
+      $createFilmCase: '@app.film.usecase.newfilm'
+    tags: ['console.command']
+  console.command.film.read:
+    class: Bundle\FilmBundle\Application\Command\ReadFilmCommand
+    arguments:
+      $readFilmCase: '@app.film.usecase.readfilm'
+    tags: ['console.command']
+  console.command.film.update:
+    class: Bundle\FilmBundle\Application\Command\UpdateFilmCommand
+    arguments:
+      $updateFilmCase: '@app.film.usecase.updatefilm'
+    tags: ['console.command']
+  console.command.film.delete:
+    class: Bundle\FilmBundle\Application\Command\DeleteFilmCommand
+    arguments:
+      $deleteFilmCase: '@app.film.usecase.deletefilm'
+    tags: ['console.command']
+
+  # default configuration for services in *this* file
+  _defaults:
+    # automatically injects dependencies in your services
+    autowire: true
+    # automatically registers your services as commands, event subscribers, etc.
+    autoconfigure: true
+    # this means you cannot fetch services directly from the container via $container->get()
+    # if you need to do this, you can override this setting on individual services
+    public: false

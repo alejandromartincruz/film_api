@@ -52,6 +52,30 @@ Los textos dinámicos y algunos de los títulos de las páginas estan internacio
 estan puestas las etiquetas en ingles, y como se ha configurado el idioma predeterminado al español, por lo que, al no 
 indicar ningún idioma lo que se muestra en la web es español. Si indicaramos que el idioma es inglés, los textos se mostrarían en inglés.
 
+> Además, se deberá permitir realizar todas las operaciones CRUD de Film por consola mediante operaciones por la consola (bin/console) de Symfony. 
+
+* `php bin/console app:create-film {titulo} "{descripción}" {actor_id}` crea una pelicula con los argumentos especificados (si titulo o descripción tienen más de una palabra han de ir entre comillas dobles)
+* `php bin/console app:read-film` devuelve un listado con las peliculas.
+* `php bin/console app:update-film {id} {titulo} "{descripción}" {actor_id}` edita la pelicula con la id indicada, el resto de argumentos funcionan igual que en pelicula nueva.
+* `php bin/console app:delete-film {id}` borra la pelicula a la que pertenece el id indicado en el argumento.
+
+> Deberás aplicar arquitectura hexagonal y buenas prácticas de diseño en la medida de lo posible.
+
+Se han aplicado las estructuras de la arquitectura hexagonal todo lo que ha sido posible. Creo que se ha logrado bastante bien, exceptuando la carpeta Entity y su contenido y la carpeta Resource y su contenido.
+
+Al mover la carpeta Entity dentro de Infraestructure todo parecia funcionar bien, pero me daba muchos problemas con el EntityManager que por defecto va a buscar las entidades a la carpeta del Bundle Entity. Moverlo de carpeta da bastantes problemas.
+
+Y algo parecido a lo de la carpeta Entity me ha pasado con Resource, motivo por el que finalmente he decidido dejar tanto Entity como Resource en sus posiciones iniciales para evitar problemas.
+
+> Es obligatorio usar eventos, te pueden ser muy útiles para algunas funcionalidades de la caché. 
+
+Se han generado eventos, los eventos son los siguientes:
+
+* film.created
+* film.updated
+* film.deleted
+* actor.created
+
 
 Importante: crear proyecto con estructura adecuada
 ========================
