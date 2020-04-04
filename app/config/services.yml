@@ -54,6 +54,21 @@ services:
         arguments:
             $createFilmCase: '@app.film.usecase.newfilm'
         tags: ['console.command']
+    console.command.film.read:
+        class: Bundle\FilmBundle\Application\Command\ReadFilmCommand
+        arguments:
+            $readFilmCase: '@app.film.usecase.readfilm'
+        tags: ['console.command']
+    console.command.film.update:
+        class: Bundle\FilmBundle\Application\Command\UpdateFilmCommand
+        arguments:
+            $updateFilmCase: '@app.film.usecase.updatefilm'
+        tags: ['console.command']
+    console.command.film.delete:
+        class: Bundle\FilmBundle\Application\Command\DeleteFilmCommand
+        arguments:
+            $deleteFilmCase: '@app.film.usecase.deletefilm'
+        tags: ['console.command']
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

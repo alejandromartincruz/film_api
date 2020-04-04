@@ -48,6 +48,7 @@ class FilmRepository extends \Doctrine\ORM\EntityRepository
     public function delete(Film $film)
     {
         $this->entityManager->remove($film);
+        $this->entityManager->flush();
     }
 
 }

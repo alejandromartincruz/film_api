@@ -25,6 +25,5 @@ class DeleteFilm
         $this->filmRepository->delete($film);
 
         $this->dispatcher->dispatch(FilmWasDeleted::TOPIC, new FilmWasDeleted($film));
-
     }
 }

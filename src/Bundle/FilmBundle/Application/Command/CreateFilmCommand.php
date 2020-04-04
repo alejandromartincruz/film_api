@@ -26,8 +26,8 @@ class CreateFilmCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Crea un nuevo actor')
-            ->setHelp('Este comando permite crear un nuevo actor...')
+            ->setDescription('Crea un nuevo Film')
+            ->setHelp('Este comando permite crear un nuevo Film...')
             ->addArgument('name', InputArgument::REQUIRED, 'hay que proporcionar un name para crear el Film.')
             ->addArgument('description', InputArgument::REQUIRED, 'hay que proporcionar un description para crear el Film.')
             ->addArgument('actorId', InputArgument::REQUIRED, 'hay que proporcionar un id de un Actor para crear el Film.');
@@ -38,7 +38,7 @@ class CreateFilmCommand extends Command
 
         $output->writeln([
             '',
-            'Creando un Actor',
+            'Creando un Film',
             '================',
             '',
         ]);
