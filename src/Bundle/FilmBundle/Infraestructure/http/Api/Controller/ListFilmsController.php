@@ -10,9 +10,8 @@ class ListFilmsController extends Controller
 {
     public function executeAction()
     {
-        $films = $this->getDoctrine()
-            ->getRepository(Film::class)
-            ->findAllOrderedByName();
+        $readFilmCase = $this->get('app.film.usecase.readfilm');
+        $films = $readFilmCase->execute();
 
         $filmsAsArray = array_map(function (Film $f) {
             return $f->toArray($f);

@@ -18,21 +18,6 @@ class CreateFilmController extends Controller
         $description = $json['description'];
         $actorId = $json['actorId'];
 
-        /*
-        $actor = $this->getDoctrine()->getRepository('\Bundle\ActorBundle\Entity\Actor')->findOneBy(['id' => $actorId]);
-
-        $film = new Film();
-
-        $film->setName($name);
-        $film->setDescription($description);
-        $film->setActor($actor);
-
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($film);
-        $em->flush();
-        */
         $createActorCase = $this->get('app.film.usecase.newfilm');
         $createActorCase->execute($name, $description, $actorId);
 

@@ -25,8 +25,8 @@ class UpdateFilmController extends Controller
         $film->setDescription($description);
         $film->setActorId($actorId);
 
-        $em->persist($film);
-        $em->flush();
+        $createActorCase = $this->get('app.film.usecase.updatefilm');
+        $createActorCase->execute($id, $name, $description, $actorId);
 
         return new Response('Film modificado correctamente', 201);
 

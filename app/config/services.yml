@@ -11,6 +11,25 @@ services:
             $filmRepository: '@app.film.repository'
             $actorRepository: '@app.actor.repository'
             $dispatcher: '@event_dispatcher'
+    app.film.usecase.readfilm:
+        class: Bundle\FilmBundle\Application\Usecase\ReadFilm
+        public: true
+        arguments:
+            $filmRepository: '@app.film.repository'
+            $dispatcher: '@event_dispatcher'
+    app.film.usecase.updatefilm:
+        class: Bundle\FilmBundle\Application\Usecase\UpdateFilm
+        public: true
+        arguments:
+            $filmRepository: '@app.film.repository'
+            $actorRepository: '@app.actor.repository'
+            $dispatcher: '@event_dispatcher'
+    app.film.usecase.deletefilm:
+        class: Bundle\FilmBundle\Application\Usecase\DeleteFilm
+        public: true
+        arguments:
+            $filmRepository: '@app.film.repository'
+            $dispatcher: '@event_dispatcher'
     app.actor.usecase.newactor:
         class: Bundle\ActorBundle\Application\Usecase\CreateActor
         public: true

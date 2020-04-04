@@ -15,11 +15,8 @@ class DeleteFilmController extends Controller
 
         $id = $json['id'];
 
-        $em = $this->getDoctrine()->getManager();
-        $film = $em->getReference('FilmBundle:Film', $id);
-
-        $em->remove($film);
-        $em->flush();
+        $deleteActorCase = $this->get('app.film.usecase.deletefilm');
+        $deleteActorCase->execute($id);
 
         return new Response('Film borrado correctamente', 201);
     }

@@ -9,9 +9,8 @@ class ListFilmsController extends Controller
 {
     public function executeAction()
     {
-        $films = $this->getDoctrine()
-            ->getRepository(Film::class)
-            ->findAllOrderedByName();
+        $readFilmCase = $this->get('app.film.usecase.readfilm');
+        $films = $readFilmCase->execute();
 
         return $this->render('FilmBundle:Default:list.html.twig', ['films' => $films] );
     }

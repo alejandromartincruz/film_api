@@ -39,9 +39,15 @@ class FilmRepository extends \Doctrine\ORM\EntityRepository
             ->getOneOrNullResult();
     }
 
-    public function saveFilm(Film $film)
+    public function save(Film $film)
     {
         $this->entityManager->persist($film);
         $this->entityManager->flush();
     }
+
+    public function delete(Film $film)
+    {
+        $this->entityManager->remove($film);
+    }
+
 }

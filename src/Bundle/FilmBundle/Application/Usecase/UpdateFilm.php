@@ -3,12 +3,11 @@
 namespace Bundle\FilmBundle\Application\Usecase;
 
 use Bundle\ActorBundle\Infraestructure\Repository\ActorRepository;
-use Bundle\FilmBundle\Domain\Event\FilmWasCreated;
-use Bundle\FilmBundle\Entity\Film;
+use Bundle\FilmBundle\Domain\Event\FilmWasUpdated;
 use Bundle\FilmBundle\Infraestructure\Repository\FilmRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class CreateFilm
+class UpdateFilm
 {
     private $filmRepository;
     private $actorRepository;
@@ -21,18 +20,18 @@ class CreateFilm
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(string $name, string $description, int $actorId)
+    public function execute(int $id, string $name, string $description, int $actorId)
     {
         $actor = $this->actorRepository->findOneById($actorId);
 
-        $film = new Film();
+        $film = $this->filmRepository->findOneById($id);
         $film->setName($name);
         $film->setDescription($description);
         $film->setActor($actor);
 
         $this->filmRepository->save($film);
 
-        $this->dispatcher->dispatch(FilmWasCreated::TOPIC, new FilmWasCreated($film));
+        $this->dispatcher->dispatch(FilmWasUpdated::TOPIC, new FilmWasUpdated($film));
 
     }
 }
