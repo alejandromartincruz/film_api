@@ -32,7 +32,7 @@ class Film
     /**
      * @var Actor
      */
-    private $actor;
+    private $actors;
 
     /**
      * Get id

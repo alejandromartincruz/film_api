@@ -1,11 +1,6 @@
 Bundle\ActorBundle\Entity\Actor:
     type: entity
-    OneToMany:
-        film:
-            targetEntity: \Bundle\FilmBundle\Entity\Film
-            inversedBy: actor
     table: actor
-    repositoryClass: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
     id:
         id:
             type: integer
@@ -17,4 +12,11 @@ Bundle\ActorBundle\Entity\Actor:
             type: string
             length: '80'
             unique: true
+    manyToMany:
+        films:
+            targetEntity: Bundle\FilmBundle\Entity\Film
+            mappedBy: actors
+
+    repositoryClass: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
+
     lifecycleCallbacks: {  }

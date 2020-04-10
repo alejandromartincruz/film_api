@@ -1,11 +1,6 @@
 Bundle\FilmBundle\Entity\Film:
     type: entity
-    manyToOne:
-        actor:
-            targetEntity: \Bundle\ActorBundle\Entity\Actor
-            mappedBy: films
     table: film
-    repositoryClass: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
     id:
         id:
             type: integer
@@ -20,8 +15,20 @@ Bundle\FilmBundle\Entity\Film:
         description:
             type: text
             nullable: true
-        actor_id:
-            type: integer
-            unique: false
+    manyToMany:
+        actors:
+            targetEntity: Bundle\ActorBundle\Entity\Actor
+            inversedBy: films
+            joinTable:
+                name: film_actors
+                joinColumns:
+                    film_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    actor_id:
+                           referencedColumnName: id
+
+    repositoryClass: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
+
 
     lifecycleCallbacks: {  }
