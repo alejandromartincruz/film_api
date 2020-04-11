@@ -3,7 +3,7 @@
 namespace Bundle\ActorBundle\Application\Usecase;
 
 use Bundle\ActorBundle\Domain\Event\ActorWasCreated;
-use Bundle\ActorBundle\Entity\Actor;
+use Bundle\ActorBundle\Domain\Entity\Actor;
 use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -24,7 +24,7 @@ class CreateActor
         $actor = new Actor();
         $actor->setName($name);
 
-        $this->actorRepository->saveActor($actor);
+        $this->actorRepository->save($actor);
 
         $this->dispatcher->dispatch(ActorWasCreated::TOPIC, new ActorWasCreated($actor));
 

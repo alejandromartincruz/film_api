@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\ActorBundle;
+namespace Bundle\ActorBundle\Infrastructure;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

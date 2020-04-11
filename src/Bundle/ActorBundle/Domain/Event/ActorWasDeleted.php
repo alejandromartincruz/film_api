@@ -5,10 +5,10 @@ namespace Bundle\ActorBundle\Domain\Event;
 use Bundle\ActorBundle\Domain\Entity\Actor;
 use Symfony\Component\EventDispatcher\Event;
 
-class ActorWasCreated extends Event
+class ActorWasDeleted extends Event
 {
 
-    const TOPIC = "actor.created";
+    const TOPIC = "actor.deleted";
 
     private $actor;
 

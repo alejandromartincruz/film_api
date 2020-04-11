@@ -2,7 +2,7 @@
 
 namespace Bundle\FilmBundle\Domain\Event;
 
-use Bundle\FilmBundle\Entity\Film;
+use Bundle\FilmBundle\Domain\Entity\Film;
 use Symfony\Component\EventDispatcher\Event;
 
 class FilmWasDeleted extends Event

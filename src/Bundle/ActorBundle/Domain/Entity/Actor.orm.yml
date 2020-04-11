@@ -1,4 +1,4 @@
-Bundle\ActorBundle\Entity\Actor:
+Bundle\ActorBundle\Domain\Entity\Actor:
     type: entity
     table: actor
     id:
@@ -14,7 +14,7 @@ Bundle\ActorBundle\Entity\Actor:
             unique: true
     manyToMany:
         films:
-            targetEntity: Bundle\FilmBundle\Entity\Film
+            targetEntity: Bundle\FilmBundle\Domain\Entity\Film
             mappedBy: actors
 
     repositoryClass: Bundle\ActorBundle\Infrastructure\Repository\ActorRepository

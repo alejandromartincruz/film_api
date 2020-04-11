@@ -2,7 +2,8 @@
 
 namespace Bundle\ActorBundle\Infrastructure\http\Controller;
 
-use Bundle\ActorBundle\Entity\Actor;
+
+use Bundle\ActorBundle\Domain\Entity\Actor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ListActorsController extends Controller

@@ -4,7 +4,7 @@ namespace Bundle\FilmBundle\Application\Usecase;
 
 use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Bundle\FilmBundle\Domain\Event\FilmWasCreated;
-use Bundle\FilmBundle\Entity\Film;
+use Bundle\FilmBundle\Domain\Entity\Film;
 use Bundle\FilmBundle\Infrastructure\Repository\FilmRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 

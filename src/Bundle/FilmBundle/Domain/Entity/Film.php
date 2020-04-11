@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\FilmBundle\Entity;
+namespace Bundle\FilmBundle\Domain\Entity;
 
-use Bundle\ActorBundle\Entity\Actor;
+use Bundle\ActorBundle\Domain\Entity\Actor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 

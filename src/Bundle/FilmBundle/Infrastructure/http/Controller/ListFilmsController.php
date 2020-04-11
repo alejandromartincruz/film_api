@@ -2,7 +2,6 @@
 
 namespace Bundle\FilmBundle\Infrastructure\http\Controller;
 
-use Bundle\FilmBundle\Entity\Film;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ListFilmsController extends Controller

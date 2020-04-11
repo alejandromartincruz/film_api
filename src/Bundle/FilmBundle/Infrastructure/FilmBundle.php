@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle;
+namespace Bundle\FilmBundle\Infrastructure;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

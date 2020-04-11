@@ -9,7 +9,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class DeleteFilm
 {
     private $filmRepository;
-    private $actorRepository;
     private $dispatcher;
 
     public function __construct(FilmRepository $filmRepository, EventDispatcherInterface $dispatcher)

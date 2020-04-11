@@ -5,6 +5,12 @@ services:
     arguments:
       $actorRepository: '@app.actor.repository'
       $dispatcher: '@event_dispatcher'
+  app.actor.usecase.deleteactor:
+    class: Bundle\ActorBundle\Application\Usecase\DeleteActor
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository'
+      $dispatcher: '@event_dispatcher'
 
   app.actor.repository:
     class: Bundle\ActorBundle\Infrastructure\Repository\ActorRepository

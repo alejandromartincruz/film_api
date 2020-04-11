@@ -1,4 +1,4 @@
-Bundle\FilmBundle\Entity\Film:
+Bundle\FilmBundle\Domain\Entity\Film:
     type: entity
     table: film
     id:
@@ -17,7 +17,7 @@ Bundle\FilmBundle\Entity\Film:
             nullable: true
     manyToMany:
         actors:
-            targetEntity: Bundle\ActorBundle\Entity\Actor
+            targetEntity: Bundle\ActorBundle\Domain\Entity\Actor
             inversedBy: films
             joinTable:
                 name: film_actors

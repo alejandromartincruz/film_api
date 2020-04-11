@@ -2,7 +2,7 @@
 
 namespace Bundle\ActorBundle\Infrastructure\http\Api\Controller;
 
-use Bundle\ActorBundle\Entity\Actor;
+use Bundle\ActorBundle\Domain\Entity\Actor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
