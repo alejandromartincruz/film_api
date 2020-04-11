@@ -2,7 +2,7 @@
 
 namespace Bundle\FilmBundle\Application\Command;
 
-use Bundle\ActorBundle\Infraestructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Bundle\FilmBundle\Application\Usecase\CreateFilm;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

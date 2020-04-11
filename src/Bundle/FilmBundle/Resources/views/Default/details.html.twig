@@ -9,7 +9,11 @@
             <div>
                 <div>{% trans %}film.title{% endtrans %}: <b>{{ film.name }}</b></div>
                 <div>{% trans %}film.description{% endtrans %}: <small>{{ film.description }}</small></div>
-                <div>{% trans %}film.actor.name{% endtrans %}: <small>{{ film.actor.name }}</small></div>
+                <ul>
+                    {% for actor in film.actors %}
+                    <li><div>{% trans %}film.actor.name{% endtrans %}: <small>{{ actor }}</small></div></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

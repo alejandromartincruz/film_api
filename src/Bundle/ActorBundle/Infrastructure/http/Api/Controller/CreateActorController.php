@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\ActorBundle\Infraestructure\http\Api\Controller;
+namespace Bundle\ActorBundle\Infrastructure\http\Api\Controller;
 
 use Bundle\ActorBundle\Entity\Actor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

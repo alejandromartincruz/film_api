@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\ActorBundle\Infraestructure\Repository;
+namespace Bundle\ActorBundle\Infrastructure\Repository;
 
 use Bundle\ActorBundle\Entity\Actor;
 use Doctrine\ORM\EntityManagerInterface;

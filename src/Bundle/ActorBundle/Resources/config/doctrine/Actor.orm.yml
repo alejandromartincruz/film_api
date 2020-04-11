@@ -17,6 +17,6 @@ Bundle\ActorBundle\Entity\Actor:
             targetEntity: Bundle\FilmBundle\Entity\Film
             mappedBy: actors
 
-    repositoryClass: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
+    repositoryClass: Bundle\ActorBundle\Infrastructure\Repository\ActorRepository
 
     lifecycleCallbacks: {  }

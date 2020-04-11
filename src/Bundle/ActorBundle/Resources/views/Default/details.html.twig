@@ -9,6 +9,14 @@
             <div>
                 <div>{% trans %}actor.name{% endtrans %}: <b>{{ actor.name }}</b></div>
             </div>
+            <ul>
+                {% for film in actor.films %}
+                    <li>
+                        <div>{% trans %}film.title{% endtrans %}: <small>{{ film.name }}</small></div>
+                        <div>{% trans %}film.description{% endtrans %}: <small>{{ film.description }}</small></div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

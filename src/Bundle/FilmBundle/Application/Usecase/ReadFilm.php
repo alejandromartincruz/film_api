@@ -2,7 +2,7 @@
 
 namespace Bundle\FilmBundle\Application\Usecase;
 
-use Bundle\FilmBundle\Infraestructure\Repository\FilmRepository;
+use Bundle\FilmBundle\Infrastructure\Repository\FilmRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ReadFilm

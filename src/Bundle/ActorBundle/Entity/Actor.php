@@ -22,13 +22,12 @@ class Actor
     private $name;
 
     /**
-     * @var Film
+     * @var ArrayCollection
      */
     private $films;
 
     /**
      * Actor constructor.
-     * @param $name
      */
     public function __construct()
     {
@@ -72,18 +71,17 @@ class Actor
     /**
      * Get films
      *
-     * @return Film
+     * @return Collection|Film[]
      */
     public function getFilms(): Collection
     {
         return $this->films;
     }
-
     public function addFilm(Film $film): self
     {
         if (!$this->films->contains($film)) {
             $this->films[] = $film;
-            $film->setComment($this);
+            $film->addActor($this);
         }
         return $this;
     }
@@ -91,19 +89,25 @@ class Actor
     {
         if ($this->films->contains($film)) {
             $this->films->removeElement($film);
-            // set the owning side to null (unless already changed)
-            if ($film->getComment() === $this) {
-                $film->setComment(null);
-            }
+            $film->removeActor($this);
         }
         return $this;
     }
 
     public function toArray(Actor $actor)
     {
+        $filmsCollection = $actor->getFilms();
+        $films = [];
+
+        foreach ($filmsCollection as $film) {
+            $films[$film->getId()]['name'] = $film->getName();
+            $films[$film->getId()]['description'] = $film->getDescription();
+        }
+
         return [
-            'id' => $actor->getId(),
-            'name' => $actor->getName()
+            'id'    => $actor->getId(),
+            'name'  => $actor->getName(),
+            'films' => $films
         ];
     }
 }

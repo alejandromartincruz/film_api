@@ -2,9 +2,9 @@
 
 namespace Bundle\FilmBundle\Application\Usecase;
 
-use Bundle\ActorBundle\Infraestructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Bundle\FilmBundle\Domain\Event\FilmWasUpdated;
-use Bundle\FilmBundle\Infraestructure\Repository\FilmRepository;
+use Bundle\FilmBundle\Infrastructure\Repository\FilmRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class UpdateFilm
@@ -20,14 +20,17 @@ class UpdateFilm
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(int $id, string $name, string $description, int $actorId)
+    public function execute(int $id, string $name, string $description, array $actorIdArray)
     {
-        $actor = $this->actorRepository->findOneById($actorId);
 
         $film = $this->filmRepository->findOneById($id);
         $film->setName($name);
         $film->setDescription($description);
-        $film->setActor($actor);
+
+        foreach ($actorIdArray as $actorId) {
+            $actor = $this->actorRepository->findOneById($actorId);
+            $film->addActor($actor);
+        }
 
         $this->filmRepository->save($film);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Infraestructure\Repository;
+namespace Bundle\FilmBundle\Infrastructure\Repository;
 
 use Bundle\FilmBundle\Entity\Film;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,7 +33,7 @@ class FilmRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->entityManager
             ->createQuery(
-                'SELECT f, a FROM FilmBundle:Film f INNER JOIN f.actor a WHERE f.id = :id'
+                'SELECT f FROM FilmBundle:Film f WHERE f.id = :id'
             )
             ->setParameter('id', $id)
             ->getOneOrNullResult();

@@ -3,7 +3,7 @@
 namespace Bundle\ActorBundle\Application\Command;
 
 use Bundle\ActorBundle\Application\Usecase\CreateActor;
-use Bundle\ActorBundle\Infraestructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

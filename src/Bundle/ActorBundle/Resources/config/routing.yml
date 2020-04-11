@@ -1,35 +1,35 @@
 api_actor_create:
     path:     /api/actor/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\CreateActorController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Api\Controller\CreateActorController::executeAction }
     methods: [POST]
 
 api_actor_update:
     path:     /api/actor/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\UpdateActorController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Api\Controller\UpdateActorController::executeAction }
     methods: [PUT]
 
 api_actor_delete:
     path:     /api/actor/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\DeleteActorController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Api\Controller\DeleteActorController::executeAction }
     methods: [DELETE]
 
 api_actor_list:
     path:     /api/actor/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Api\Controller\ListActorsController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Api\Controller\ListActorsController::executeAction }
     methods: [GET]
 
 actor_details:
     path:     /actor/list/{actorId}/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\ListActorDetailsController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Controller\ListActorDetailsController::executeAction }
     methods: [GET]
     requirements:
         actorId: '\d+'
 
 actor_list:
     path:     /actor/list/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\ListActorsController::executeAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Controller\ListActorsController::executeAction }
     methods: [GET]
 
 actor_test:
     path:     /actor/test_default_controller/
-    defaults: { _controller: Bundle\ActorBundle\Infraestructure\http\Controller\DefaultController::indexAction }
+    defaults: { _controller: Bundle\ActorBundle\Infrastructure\http\Controller\DefaultController::indexAction }

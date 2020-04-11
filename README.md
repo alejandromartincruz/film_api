@@ -63,7 +63,7 @@ indicar ningún idioma lo que se muestra en la web es español. Si indicaramos q
 
 Se han aplicado las estructuras de la arquitectura hexagonal todo lo que ha sido posible. Creo que se ha logrado bastante bien, exceptuando la carpeta Entity y su contenido y la carpeta Resource y su contenido.
 
-Al mover la carpeta Entity dentro de Infraestructure todo parecia funcionar bien, pero me daba muchos problemas con el EntityManager que por defecto va a buscar las entidades a la carpeta del Bundle Entity. Moverlo de carpeta da bastantes problemas.
+Al mover la carpeta Entity dentro de Infrastructure todo parecia funcionar bien, pero me daba muchos problemas con el EntityManager que por defecto va a buscar las entidades a la carpeta del Bundle Entity. Moverlo de carpeta da bastantes problemas.
 
 Y algo parecido a lo de la carpeta Entity me ha pasado con Resource, motivo por el que finalmente he decidido dejar tanto Entity como Resource en sus posiciones iniciales para evitar problemas.
 

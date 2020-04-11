@@ -7,7 +7,7 @@ services:
       $dispatcher: '@event_dispatcher'
 
   app.actor.repository:
-    class: Bundle\ActorBundle\Infraestructure\Repository\ActorRepository
+    class: Bundle\ActorBundle\Infrastructure\Repository\ActorRepository
     arguments:
       $entityManager: '@doctrine.orm.entity_manager'
   console.command.actor.create:

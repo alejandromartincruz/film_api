@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\FilmBundle\Infraestructure\http\Api\Controller;
+namespace Bundle\FilmBundle\Infrastructure\http\Api\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

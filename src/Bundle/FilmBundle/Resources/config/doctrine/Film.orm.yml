@@ -28,7 +28,7 @@ Bundle\FilmBundle\Entity\Film:
                     actor_id:
                            referencedColumnName: id
 
-    repositoryClass: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
+    repositoryClass: Bundle\FilmBundle\Infrastructure\Repository\FilmRepository
 
 
     lifecycleCallbacks: {  }

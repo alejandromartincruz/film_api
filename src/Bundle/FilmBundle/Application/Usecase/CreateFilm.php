@@ -2,10 +2,10 @@
 
 namespace Bundle\FilmBundle\Application\Usecase;
 
-use Bundle\ActorBundle\Infraestructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Bundle\FilmBundle\Domain\Event\FilmWasCreated;
 use Bundle\FilmBundle\Entity\Film;
-use Bundle\FilmBundle\Infraestructure\Repository\FilmRepository;
+use Bundle\FilmBundle\Infrastructure\Repository\FilmRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CreateFilm
@@ -21,14 +21,16 @@ class CreateFilm
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(string $name, string $description, int $actorId)
+    public function execute(string $name, string $description, array $actorIdArray)
     {
-        $actor = $this->actorRepository->findOneById($actorId);
 
         $film = new Film();
         $film->setName($name);
         $film->setDescription($description);
-        $film->setActor($actor);
+        foreach ($actorIdArray as $actorId) {
+            $actor = $this->actorRepository->findOneById($actorId);
+            $film->addActor($actor);
+        }
 
         $this->filmRepository->save($film);
 

@@ -26,7 +26,7 @@ services:
       $filmRepository: '@app.film.repository'
       $dispatcher: '@event_dispatcher'
   app.film.repository:
-    class: Bundle\FilmBundle\Infraestructure\Repository\FilmRepository
+    class: Bundle\FilmBundle\Infrastructure\Repository\FilmRepository
     arguments:
       $entityManager: '@doctrine.orm.entity_manager'
   console.command.film.create:

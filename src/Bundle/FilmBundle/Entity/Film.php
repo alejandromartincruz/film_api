@@ -3,6 +3,8 @@
 namespace Bundle\FilmBundle\Entity;
 
 use Bundle\ActorBundle\Entity\Actor;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Film
@@ -30,9 +32,17 @@ class Film
     private $actor_id;
 
     /**
-     * @var Actor
+     * @var ArrayCollection
      */
     private $actors;
+
+    /**
+     * Film constructor.
+     */
+    public function __construct()
+    {
+        $this->actors = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -93,53 +103,44 @@ class Film
     }
 
     /**
-     * Set actor
+     * Get actors
      *
-     * @param int $actor_id
-     *
-     * @return Film
+     * @return Collection|Actor[]
      */
-    public function setActorId($actor_id): self
+    public function getActors(): Collection
     {
-        $this->actor_id = $actor_id;
-
+        return $this->actors;
+    }
+    public function addActor(Actor $actor): self
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors[] = $actor;
+            $actor->addFilm($this);
+        }
         return $this;
     }
-
-    /**
-     * Get actor
-     *
-     * @return int
-     */
-    public function getActorId(): ?int
+    public function removeActor(Actor $actor): self
     {
-        return $this->actor_id;
-    }
-
-    /**
-     * Get actor
-     *
-     * @return Actor
-     */
-    public function getActor(): ?Actor
-    {
-        return $this->actor;
-    }
-
-    public function setActor(?Actor $actor): self
-    {
-        $this->actor = $actor;
-        $this->actor_id = $actor->getId();
+        if ($this->actors->contains($actor)) {
+            $this->actors->removeElement($actor);
+            $actor->removeFilm($this);
+        }
         return $this;
     }
 
     public function toArray(Film $film)
     {
+        $actorsCollection = $film->getActors();
+        $actors = [];
+        foreach ($actorsCollection as $actor) {
+            $actors[$actor->getId()] = $actor->getName();
+        }
+
         return [
-            'id' => $film->getId(),
-            'name' => $film->getName(),
+            'id'          => $film->getId(),
+            'name'        => $film->getName(),
             'description' => $film->getDescription(),
-            'actor_id' => $film->getActorId()
+            'actors'      => $actors
         ];
     }
 }
