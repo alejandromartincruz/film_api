@@ -2,10 +2,10 @@
 
 namespace Bundle\FilmBundle\Application\Usecase;
 
-use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
 use Bundle\FilmBundle\Domain\Event\FilmWasCreated;
 use Bundle\FilmBundle\Domain\Entity\Film;
-use Bundle\FilmBundle\Infrastructure\Repository\FilmRepository;
+use Bundle\FilmBundle\Domain\Interfaces\FilmRepository;
+use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CreateFilm

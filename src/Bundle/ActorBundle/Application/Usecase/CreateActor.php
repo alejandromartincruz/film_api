@@ -4,7 +4,7 @@ namespace Bundle\ActorBundle\Application\Usecase;
 
 use Bundle\ActorBundle\Domain\Event\ActorWasCreated;
 use Bundle\ActorBundle\Domain\Entity\Actor;
-use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CreateActor

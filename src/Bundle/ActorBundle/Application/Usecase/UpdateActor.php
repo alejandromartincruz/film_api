@@ -2,6 +2,7 @@
 
 
 namespace Bundle\ActorBundle\Application\Usecase;
+use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
 
 
 class UpdateActor

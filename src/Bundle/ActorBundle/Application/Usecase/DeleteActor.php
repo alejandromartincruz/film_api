@@ -5,7 +5,7 @@ namespace Bundle\ActorBundle\Application\Usecase;
 
 
 use Bundle\ActorBundle\Domain\Event\ActorWasDeleted;
-use Bundle\ActorBundle\Infrastructure\Repository\ActorRepository;
+use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
 
 class DeleteActor
 {
