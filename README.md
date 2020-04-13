@@ -61,11 +61,7 @@ indicar ningún idioma lo que se muestra en la web es español. Si indicaramos q
 
 > Deberás aplicar arquitectura hexagonal y buenas prácticas de diseño en la medida de lo posible.
 
-Se han aplicado las estructuras de la arquitectura hexagonal todo lo que ha sido posible. Creo que se ha logrado bastante bien, exceptuando la carpeta Entity y su contenido y la carpeta Resource y su contenido.
-
-Al mover la carpeta Entity dentro de Infrastructure todo parecia funcionar bien, pero me daba muchos problemas con el EntityManager que por defecto va a buscar las entidades a la carpeta del Bundle Entity. Moverlo de carpeta da bastantes problemas.
-
-Y algo parecido a lo de la carpeta Entity me ha pasado con Resource, motivo por el que finalmente he decidido dejar tanto Entity como Resource en sus posiciones iniciales para evitar problemas.
+Se han aplicado las estructuras de la arquitectura hexagonal todo lo que ha sido posible. Creo que se ha logrado bastante bien.
 
 > Es obligatorio usar eventos, te pueden ser muy útiles para algunas funcionalidades de la caché. 
 
@@ -75,6 +71,19 @@ Se han generado eventos, los eventos son los siguientes:
 * film.updated
 * film.deleted
 * actor.created
+* actor.updated
+* actor.deleted
+
+> Finalmente, como la página recibirá muchas peticiones, necesitarás implementar una caché, de momento usando el Sistema de Ficheros. Cada vez que se haga una petición de una película, la caché comprobará si la tiene cacheada o no. Si la tiene cacheada, devolverá los datos de la caché. Si no la tiene cacheada pedirá los datos a la base de datos y la cacheará. Si la película es actualizada, se invalidará la caché.
+
+Se ha utilizado `cache.adapter.filesystem` para implementar la caché. Los archivos de la caché se guardan en la carpeta `var/cache/dev/pools`.
+
+Tal y como se indica en el enunciado, cuando se hace una petición de la información de UNA pelicula, se devuelve la información desde la caché si esta existe. En caso contrario, se busca en la base de datos y se añade la pelicula a la caché.
+
+> Las funcionalidades CRUD contra la base de datos deben ser independientes de si existe caché o no.
+
+Se ha decorado el repositorio Film, de forma que la caché no afecta a estas funcionalidades.
+
 
 
 Importante: crear proyecto con estructura adecuada
