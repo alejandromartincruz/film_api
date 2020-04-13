@@ -2,18 +2,25 @@
 
 namespace Bundle\ActorBundle\Infrastructure\http\Controller;
 
-use Bundle\ActorBundle\Domain\Entity\Actor;
+use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ListActorDetailsController extends Controller
 {
+    private $actorRepository;
+
+    public function __construct(
+       ActorRepository  $actorRepository
+    )
+    {
+        $this->actorRepository = $actorRepository;
+    }
+
     public function executeAction($actorId)
     {
         $id = (int) $actorId;
 
-        $actor = $this->getDoctrine()
-            ->getRepository(Actor::class)
-            ->findOneById($id);
+        $actor = $this->actorRepository->findOneById($id);
 
         $actor = $actor->toArray($actor);
 

@@ -21,9 +21,14 @@ class DeleteFilm
     {
         $film = $this->filmRepository->findOneById($id);
 
+        if (is_null($film)) {
+            return false;
+        }
+
         try {
+            $filmId = $film->getId();
             $this->filmRepository->delete($film);
-            $this->dispatcher->dispatch(FilmWasDeleted::TOPIC, new FilmWasDeleted($film->getId()));
+            $this->dispatcher->dispatch(FilmWasDeleted::TOPIC, new FilmWasDeleted($filmId));
         } catch (\Exception $e) {
             error_log($e->getMessage());
         }

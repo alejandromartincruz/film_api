@@ -30,7 +30,7 @@ class ActorRepository extends \Doctrine\ORM\EntityRepository implements \Bundle\
             ->getResult();
     }
 
-    public function findOneById(int $id): Actor
+    public function findOneById(int $id): ?Actor
     {
         return $this->entityManager
             ->createQuery(

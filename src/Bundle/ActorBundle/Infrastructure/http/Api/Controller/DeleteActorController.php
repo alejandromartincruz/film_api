@@ -2,12 +2,22 @@
 
 namespace Bundle\ActorBundle\Infrastructure\http\Api\Controller;
 
+use Bundle\ActorBundle\Application\Usecase\DeleteActor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DeleteActorController extends Controller
 {
+    private $deleteActorCase;
+
+    public function __construct(
+        DeleteActor $deleteActorCase
+    )
+    {
+        $this->deleteActorCase = $deleteActorCase;
+    }
+
     public function executeAction(Request $request)
     {
         $json_string = utf8_encode($request->getContent());
@@ -15,11 +25,7 @@ class DeleteActorController extends Controller
 
         $id = $json['id'];
 
-        $em = $this->getDoctrine()->getManager();
-        $actor = $em->getReference('ActorBundle:Actor', $id);
-
-        $em->remove($actor);
-        $em->flush();
+        $this->deleteActorCase->execute($id);
 
         return new Response('Actor borrado correctamente', 201);
     }

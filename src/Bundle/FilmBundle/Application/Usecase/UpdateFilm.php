@@ -24,6 +24,11 @@ class UpdateFilm
     {
 
         $film = $this->filmRepository->findOneById($id);
+
+        if (is_null($film)) {
+            return false;
+        }
+
         $film->setName($name);
         $film->setDescription($description);
 

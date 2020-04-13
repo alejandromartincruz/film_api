@@ -34,7 +34,7 @@ class CachedFilmRepository extends \Doctrine\ORM\EntityRepository implements \Bu
         return $this->filmRepository->findAllOrderedByName();
     }
 
-    public function findOneById(int $id): Film
+    public function findOneById(int $id): ?Film
     {
         $item = $this->cache->getItem((string) $id);
 

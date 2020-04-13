@@ -2,15 +2,25 @@
 
 namespace Bundle\FilmBundle\Infrastructure\http\Api\Controller;
 
+use Bundle\FilmBundle\Application\Usecase\UpdateFilm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UpdateFilmController extends Controller
 {
+    private $updateFilmCase;
+
+    public function __construct(
+        UpdateFilm $updateFilmCase
+    )
+    {
+        $this->updateFilmCase = $updateFilmCase;
+    }
+
     public function executeAction(Request $request)
     {
-        $json_string = utf8_encode($request->getContent());
+        $json_string = $request->getContent();
         $json = json_decode( $json_string, true );
 
         $id = $json['id'];
@@ -18,8 +28,7 @@ class UpdateFilmController extends Controller
         $description = $json['description'];
         $actorIdArray = $json['actorIdArray'];
 
-        $updateActorCase = $this->get('app.film.usecase.updatefilm');
-        $updateActorCase->execute($id, $name, $description, $actorIdArray);
+        $this->updateFilmCase->execute($id, $name, $description, $actorIdArray);
 
         return new Response('Film modificado correctamente', 201);
 

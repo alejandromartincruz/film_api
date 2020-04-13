@@ -2,7 +2,6 @@
 
 namespace Bundle\ActorBundle\Domain\Event;
 
-use Bundle\ActorBundle\Domain\Entity\Actor;
 use Symfony\Component\EventDispatcher\Event;
 
 class ActorWasCreated extends Event
@@ -10,16 +9,16 @@ class ActorWasCreated extends Event
 
     const TOPIC = "actor.created";
 
-    private $actor;
+    private $actorId;
 
-    public function __construct(Actor $actor)
+    public function __construct(int $actorId)
     {
-        $this->actor = $actor;
+        $this->actorId = $actorId;
     }
 
-    public function getActor(): Actor
+    public function getActorId(): int
     {
-        return $this->actor;
+        return $this->actorId;
     }
 
 }

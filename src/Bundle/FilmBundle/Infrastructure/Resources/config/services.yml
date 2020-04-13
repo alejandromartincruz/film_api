@@ -1,4 +1,37 @@
 services:
+
+  film.controller.list_films:
+    class: Bundle\FilmBundle\Infrastructure\http\Controller\ListFilmsController
+    public: true
+    arguments:
+      $readFilmCase: '@app.film.usecase.readfilm'
+  film.controller.list_film_details:
+    class: Bundle\FilmBundle\Infrastructure\http\Controller\ListFilmDetailsController
+    public: true
+    arguments:
+      $filmRepository: '@app.film.repository.cached'
+
+  film.controller.api.create_film:
+    class: Bundle\FilmBundle\Infrastructure\http\Api\Controller\CreateFilmController
+    public: true
+    arguments:
+      $createFilmCase: '@app.film.usecase.newfilm'
+  film.controller.api.list_films:
+    class: Bundle\FilmBundle\Infrastructure\http\Api\Controller\ListFilmsController
+    public: true
+    arguments:
+      $readFilmCase: '@app.film.usecase.readfilm'
+  film.controller.api.update_film:
+    class: Bundle\FilmBundle\Infrastructure\http\Api\Controller\UpdateFilmController
+    public: true
+    arguments:
+      $updateFilmCase: '@app.film.usecase.updatefilm'
+  film.controller.api.delete_film:
+    class: Bundle\FilmBundle\Infrastructure\http\Api\Controller\DeleteFilmController
+    public: true
+    arguments:
+      $deleteFilmCase: '@app.film.usecase.deletefilm'
+
   app.film.usecase.newfilm:
     class: Bundle\FilmBundle\Application\Usecase\CreateFilm
     public: true
@@ -25,6 +58,7 @@ services:
     arguments:
       $filmRepository: '@app.film.repository.cached'
       $dispatcher: '@event_dispatcher'
+
   app.film.repository:
     class: Bundle\FilmBundle\Infrastructure\Repository\FilmRepository
     arguments:
@@ -35,6 +69,7 @@ services:
     arguments:
       $filmRepository: '@app.film.repository.cached.inner'
       $cache: '@cache.app'
+
   console.command.film.create:
     class: Bundle\FilmBundle\Application\Command\CreateFilmCommand
     arguments:

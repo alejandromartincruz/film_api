@@ -20,13 +20,15 @@ class CreateActor
 
     public function execute(string $name)
     {
-
         $actor = new Actor();
         $actor->setName($name);
 
-        $this->actorRepository->save($actor);
-
-        $this->dispatcher->dispatch(ActorWasCreated::TOPIC, new ActorWasCreated($actor));
+        try {
+            $this->actorRepository->save($actor);
+            $this->dispatcher->dispatch(ActorWasCreated::TOPIC, new ActorWasCreated($actor->getId()));
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+        }
 
     }
 }

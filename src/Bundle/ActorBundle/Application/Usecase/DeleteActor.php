@@ -6,6 +6,7 @@ namespace Bundle\ActorBundle\Application\Usecase;
 
 use Bundle\ActorBundle\Domain\Event\ActorWasDeleted;
 use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class DeleteActor
 {
@@ -22,8 +23,17 @@ class DeleteActor
     {
         $actor = $this->actorRepository->findOneById($id);
 
-        $this->actorRepository->delete($actor);
+        if (is_null($actor)) {
+            return false;
+        }
 
-        $this->dispatcher->dispatch(ActorWasDeleted::TOPIC, new ActorWasDeleted($actor));
+        try {
+            $actorId = $actor->getId();
+            $this->actorRepository->delete($actor);
+            $this->dispatcher->dispatch(ActorWasDeleted::TOPIC, new ActorWasDeleted($actorId));
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+        }
+
     }
 }

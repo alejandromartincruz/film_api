@@ -3,10 +3,24 @@
 
 namespace Bundle\ActorBundle\Application\Usecase;
 use Bundle\ActorBundle\Domain\Interfaces\ActorRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 
 class ReadActor
 {
-    // no se ha pedido en el enunciado, y por falta de tiempo no se ha desarrollado
-    // si al acabar la practica me sobra tiempo añadiré el codigo, que es similar al de Film
+    private $actorRepository;
+    private $dispatcher;
+
+    public function __construct(ActorRepository $actorRepository, EventDispatcherInterface $dispatcher)
+    {
+        $this->actorRepository = $actorRepository;
+        $this->dispatcher = $dispatcher;
+    }
+
+    public function execute()
+    {
+        $actors = $this->actorRepository->findAllOrderedByName();
+
+        return $actors;
+    }
 }

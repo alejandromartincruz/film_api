@@ -29,7 +29,7 @@ class FilmRepository extends \Doctrine\ORM\EntityRepository implements \Bundle\F
             ->getResult();
     }
 
-    public function findOneById(int $id): Film
+    public function findOneById(int $id): ?Film
     {
         return $this->entityManager
             ->createQuery(

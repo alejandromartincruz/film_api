@@ -1,4 +1,36 @@
 services:
+  actor.controller.list_actors:
+    class: Bundle\ActorBundle\Infrastructure\http\Controller\ListActorsController
+    public: true
+    arguments:
+      $readActorCase: '@app.actor.usecase.readactor'
+  actor.controller.list_sctor_details:
+    class: Bundle\ActorBundle\Infrastructure\http\Controller\ListActorDetailsController
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository'
+
+  actor.controller.api.create_actor:
+    class: Bundle\ActorBundle\Infrastructure\http\Api\Controller\CreateActorController
+    public: true
+    arguments:
+      $createActorCase: '@app.actor.usecase.newactor'
+  actor.controller.api.list_actors:
+    class: Bundle\ActorBundle\Infrastructure\http\Api\Controller\ListActorsController
+    public: true
+    arguments:
+      $readActorCase: '@app.actor.usecase.readactor'
+  actor.controller.api.update_actor:
+    class: Bundle\ActorBundle\Infrastructure\http\Api\Controller\UpdateActorController
+    public: true
+    arguments:
+      $updateActorCase: '@app.actor.usecase.updateactor'
+  actor.controller.api.delete_actor:
+    class: Bundle\ActorBundle\Infrastructure\http\Api\Controller\DeleteActorController
+    public: true
+    arguments:
+      $deleteActorCase: '@app.actor.usecase.deleteactor'
+
   app.actor.usecase.newactor:
     class: Bundle\ActorBundle\Application\Usecase\CreateActor
     public: true
@@ -7,6 +39,18 @@ services:
       $dispatcher: '@event_dispatcher'
   app.actor.usecase.deleteactor:
     class: Bundle\ActorBundle\Application\Usecase\DeleteActor
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository'
+      $dispatcher: '@event_dispatcher'
+  app.actor.usecase.readactor:
+    class: Bundle\ActorBundle\Application\Usecase\ReadActor
+    public: true
+    arguments:
+      $actorRepository: '@app.actor.repository'
+      $dispatcher: '@event_dispatcher'
+  app.actor.usecase.updateactor:
+    class: Bundle\ActorBundle\Application\Usecase\UpdateActor
     public: true
     arguments:
       $actorRepository: '@app.actor.repository'
