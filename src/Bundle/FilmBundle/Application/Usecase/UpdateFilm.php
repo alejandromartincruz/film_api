@@ -32,9 +32,12 @@ class UpdateFilm
             $film->addActor($actor);
         }
 
-        $this->filmRepository->save($film);
-
-        $this->dispatcher->dispatch(FilmWasUpdated::TOPIC, new FilmWasUpdated($film));
+        try {
+            $this->filmRepository->save($film);
+            $this->dispatcher->dispatch(FilmWasUpdated::TOPIC, new FilmWasUpdated($film->getId()));
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+        }
 
     }
 }

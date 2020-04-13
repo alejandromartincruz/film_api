@@ -2,7 +2,6 @@
 
 namespace Bundle\FilmBundle\Domain\Event;
 
-use Bundle\FilmBundle\Domain\Entity\Film;
 use Symfony\Component\EventDispatcher\Event;
 
 class FilmWasCreated extends Event
@@ -10,16 +9,16 @@ class FilmWasCreated extends Event
 
     const TOPIC = "film.created";
 
-    private $film;
+    private $filmId;
 
-    public function __construct(Film $film)
+    public function __construct(int $filmId)
     {
-        $this->film = $film;
+        $this->filmId = $filmId;
     }
 
-    public function getFilm(): Film
+    public function getFilmId(): int
     {
-        return $this->film;
+        return $this->filmId;
     }
 
 }

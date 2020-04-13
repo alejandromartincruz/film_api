@@ -11,9 +11,8 @@ class ListFilmDetailsController extends Controller
     {
         $id = (int) $filmId;
 
-        $film = $this->getDoctrine()
-            ->getRepository(Film::class)
-            ->findOneById($id);
+        $filmRepository = $this->get('app.film.repository.cached');
+        $film = $filmRepository->findOneById($id);
 
         $film = $film->toArray($film);
 

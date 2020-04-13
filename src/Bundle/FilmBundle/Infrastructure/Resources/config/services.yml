@@ -3,32 +3,38 @@ services:
     class: Bundle\FilmBundle\Application\Usecase\CreateFilm
     public: true
     arguments:
-      $filmRepository: '@app.film.repository'
+      $filmRepository: '@app.film.repository.cached'
       $actorRepository: '@app.actor.repository'
       $dispatcher: '@event_dispatcher'
   app.film.usecase.readfilm:
     class: Bundle\FilmBundle\Application\Usecase\ReadFilm
     public: true
     arguments:
-      $filmRepository: '@app.film.repository'
+      $filmRepository: '@app.film.repository.cached'
       $dispatcher: '@event_dispatcher'
   app.film.usecase.updatefilm:
     class: Bundle\FilmBundle\Application\Usecase\UpdateFilm
     public: true
     arguments:
-      $filmRepository: '@app.film.repository'
+      $filmRepository: '@app.film.repository.cached'
       $actorRepository: '@app.actor.repository'
       $dispatcher: '@event_dispatcher'
   app.film.usecase.deletefilm:
     class: Bundle\FilmBundle\Application\Usecase\DeleteFilm
     public: true
     arguments:
-      $filmRepository: '@app.film.repository'
+      $filmRepository: '@app.film.repository.cached'
       $dispatcher: '@event_dispatcher'
   app.film.repository:
     class: Bundle\FilmBundle\Infrastructure\Repository\FilmRepository
     arguments:
       $entityManager: '@doctrine.orm.entity_manager'
+  app.film.repository.cached:
+    class: Bundle\FilmBundle\Infrastructure\Repository\CachedFilmRepository
+    decorates: app.film.repository
+    arguments:
+      $filmRepository: '@app.film.repository.cached.inner'
+      $cache: '@cache.app'
   console.command.film.create:
     class: Bundle\FilmBundle\Application\Command\CreateFilmCommand
     arguments:

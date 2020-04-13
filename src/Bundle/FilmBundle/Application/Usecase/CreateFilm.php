@@ -32,9 +32,12 @@ class CreateFilm
             $film->addActor($actor);
         }
 
-        $this->filmRepository->save($film);
-
-        $this->dispatcher->dispatch(FilmWasCreated::TOPIC, new FilmWasCreated($film));
+        try {
+            $this->filmRepository->save($film);
+            $this->dispatcher->dispatch(FilmWasCreated::TOPIC, new FilmWasCreated($film->getId()));
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+        }
 
     }
 }
